@@ -6,12 +6,19 @@
 //  Copyright (c) 2015 GruTech. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class NetworkController {
 
     var DBUG : Bool = false
-    
+
+    //   WARNING - These two items should never make it into Github, especially when you're
+    //             going to submit this or any other app to the Apple Store.
+    // Client ID
+    let clientId     = "11c02af80289b9906733"
+    // Client Secret
+    let clientSecret = "cf0324f99d22bf956bcbbf57357285ea471812d1"
+
     var urlSession : NSURLSession
     let accessTokenUserDefaultsKey = "accessToken"
     var accessToken : String?
@@ -34,8 +41,9 @@ class NetworkController {
     }
 
     func requestAccessToken() {
-        if DBUG { println( "NetworkController::requestAccess()" ) }
-//        let url = "https://github.com/login/oauth/authorize?client_id=\(self.clientID)&scope=user,repo"
+        if DBUG { println( "NetworkController::requestAccessToken()" ) }
+
+//        let url = "https://github.com/login/oauth/authorize?client_id=\(self.clientId)&scope=user,repo"
 //        UIApplication.sharedApplication().openURL(NSURL(string: url)!)
     }
 
@@ -48,8 +56,8 @@ class NetworkController {
 
         // Example: curl https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc
 
-        let url = NSURL( string: "http://127.0.0.1:3000" )                                          // Phase I
-//      let url = NSURL( string: "https://api.github.com/search/repositories?q=\(searchTerm)" )     // Phase II
+//        let url = NSURL( string: "http://127.0.0.1:3000" )                                          // Phase I
+      let url = NSURL( string: "https://api.github.com/search/repositories?q=\(searchTerm)" )     // Phase II
 
         let dataTask = self.urlSession.dataTaskWithURL( url!, completionHandler: { (data, urlResponse, error ) -> Void in
             if error == nil {

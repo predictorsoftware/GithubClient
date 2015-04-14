@@ -8,7 +8,7 @@
         <!--Menu Table View Controller-->
         <scene sceneID="Jq6-gD-unJ">
             <objects>
-                <tableViewController title="MenuTableViewController" id="za4-rp-qLd" userLabel="Menu Table View Controller" sceneMemberID="viewController">
+                <tableViewController title="MenuTableViewController" id="za4-rp-qLd" userLabel="Menu Table View Controller" customClass="MenuTableViewController" customModule="GithubClient" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Lkq-Qu-J0Q">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -16,7 +16,7 @@
                         <sections>
                             <tableViewSection headerTitle="Search" id="oTQ-m7-8RT">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="88R-mJ-MXB" imageView="fHY-no-9Ff" rowHeight="54" style="IBUITableViewCellStyleDefault" id="3W7-JX-k2N">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="88R-mJ-MXB" imageView="fHY-no-9Ff" rowHeight="54" style="IBUITableViewCellStyleDefault" id="3W7-JX-k2N">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3W7-JX-k2N" id="wsP-cD-Kha">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -125,7 +125,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OpV-PV-Wev" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1093" y="472"/>
+            <point key="canvasLocation" x="1093" y="471.99999999999994"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Mcb-vI-xyt">
@@ -143,25 +143,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kR-81-MXm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="281" y="472"/>
+            <point key="canvasLocation" x="281" y="471.99999999999994"/>
         </scene>
         <!--Search Repo View Controller-->
         <scene sceneID="QOb-Yw-u1T">
             <objects>
                 <viewController id="rAi-ed-8Oo" customClass="SearchRepoViewController" customModule="GithubClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="HWq-3U-pmr"/>
-                        <viewControllerLayoutGuide type="bottom" id="csQ-Nt-jLF"/>
+                        <viewControllerLayoutGuide type="top" id="bnT-As-dK9"/>
+                        <viewControllerLayoutGuide type="bottom" id="vEK-ay-yz0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tzv-Jn-vn0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gWL-Wn-84i">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="608"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Here" id="EjB-Lr-r7m">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Search Here" id="EjB-Lr-r7m">
+                                    <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                 </searchBar>
@@ -174,16 +174,20 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="-4" y="0.0" width="608" height="800"/>
+                                </variation>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="gWL-Wn-84i" secondAttribute="trailing" constant="-16" id="N4M-Xr-aaQ"/>
-                            <constraint firstItem="gWL-Wn-84i" firstAttribute="leading" secondItem="tzv-Jn-vn0" secondAttribute="leadingMargin" constant="-16" id="WBN-VC-z4H"/>
-                            <constraint firstItem="csQ-Nt-jLF" firstAttribute="top" secondItem="gWL-Wn-84i" secondAttribute="bottom" id="eVu-km-AHK"/>
-                            <constraint firstItem="gWL-Wn-84i" firstAttribute="top" secondItem="tzv-Jn-vn0" secondAttribute="topMargin" id="fdb-GU-kfM"/>
+                            <constraint firstItem="gWL-Wn-84i" firstAttribute="leading" secondItem="tzv-Jn-vn0" secondAttribute="leadingMargin" constant="-16" id="0TA-g6-tnp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gWL-Wn-84i" secondAttribute="trailing" constant="-16" id="Ked-eG-aXV"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="gWL-Wn-84i" secondAttribute="bottom" constant="-8" id="M4B-vU-MRb"/>
+                            <constraint firstItem="gWL-Wn-84i" firstAttribute="top" secondItem="tzv-Jn-vn0" secondAttribute="topMargin" id="jpc-0O-TP7"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="e2Y-4d-14x"/>
                     <connections>
                         <outlet property="searchTerm" destination="EjB-Lr-r7m" id="ETg-LE-hWd"/>
                         <outlet property="tableView" destination="gWL-Wn-84i" id="qkW-6o-1Qa"/>
@@ -191,7 +195,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAl-6n-OLn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1792" y="472"/>
+            <point key="canvasLocation" x="1792" y="471"/>
         </scene>
     </scenes>
     <resources>
