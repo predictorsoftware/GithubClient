@@ -68,14 +68,11 @@ class SearchRepoViewController : UIViewController, UITableViewDataSource, UITabl
 
         let repoEntry = repositories[indexPath.row]
 
-//        repoEntry.name
-
         repoCell.repoName.text      = repoEntry.name
-        repoCell.repoAuthor.text    = repoEntry.author
+        repoCell.repoAuthor.text    = "\(repoEntry.author)(\(repoEntry.id))"
         repoCell.reproHtmlURL.text  = repoEntry.htmlURL
-        repoCell.repoId.text        = "\(repoEntry.id)"
         repoCell.repoCreatedAt.text = repoEntry.createdAt
-//
+
         return repoCell
     }
 
@@ -89,12 +86,12 @@ class SearchRepoViewController : UIViewController, UITableViewDataSource, UITabl
         self.networkController.getRepositoriesForGivenSearchTerm( searchBar.text, callback: { ( repos, NilLiteralConvertible) -> () in
             println( "repositories[\(repos)]" )
             if repos != nil {
-               self.repositories = repos!
+                self.repositories = repos!
             }
             self.tableView.reloadData()
         })
         //Dismiss keyboard.
         searchBar.resignFirstResponder()
     } 
-
+    
 }

@@ -16,7 +16,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" text="name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZF-7A-MrT">
                         <rect key="frame" x="8" y="1" width="176" height="20.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="repoAuthor" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToS-qa-cpX">
@@ -35,16 +35,6 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="id" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqM-Jx-U2N">
-                        <rect key="frame" x="240" y="10" width="78" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="78" id="g14-8j-ubm"/>
-                            <constraint firstAttribute="height" constant="21" id="ypC-Gb-ohZ"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="createdAt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xh-vx-SFA">
                         <rect key="frame" x="45" y="11" width="139" height="23.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
@@ -53,11 +43,8 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="uqM-Jx-U2N" secondAttribute="trailing" constant="-6" id="3ye-iw-hOE"/>
                     <constraint firstItem="sZF-7A-MrT" firstAttribute="top" secondItem="KoA-ce-Mc9" secondAttribute="topMargin" constant="-7" id="FcO-6z-uPj"/>
                     <constraint firstItem="ToS-qa-cpX" firstAttribute="top" secondItem="KoA-ce-Mc9" secondAttribute="topMargin" constant="2" id="R4J-3h-WTL"/>
-                    <constraint firstItem="uqM-Jx-U2N" firstAttribute="top" secondItem="KoA-ce-Mc9" secondAttribute="topMargin" constant="2" id="UU5-rt-qTM"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="uqM-Jx-U2N" secondAttribute="bottom" constant="9" id="UhI-Yi-6R3"/>
                     <constraint firstItem="sZF-7A-MrT" firstAttribute="leading" secondItem="KoA-ce-Mc9" secondAttribute="leadingMargin" id="hYV-gt-A4H"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ToS-qa-cpX" secondAttribute="trailing" constant="-52" id="j7X-z1-nY7"/>
                     <constraint firstAttribute="bottomMargin" secondItem="ToS-qa-cpX" secondAttribute="bottom" constant="9.5" id="vhd-jv-eYD"/>
@@ -66,7 +53,6 @@
             <connections>
                 <outlet property="repoAuthor" destination="ToS-qa-cpX" id="FAv-kG-pbd"/>
                 <outlet property="repoCreatedAt" destination="4xh-vx-SFA" id="gT4-m2-ImF"/>
-                <outlet property="repoId" destination="uqM-Jx-U2N" id="zMp-Ii-jBC"/>
                 <outlet property="repoName" destination="sZF-7A-MrT" id="MEc-u9-px8"/>
                 <outlet property="reproHtmlURL" destination="TMf-4E-Vco" id="gb3-nL-Mmg"/>
             </connections>

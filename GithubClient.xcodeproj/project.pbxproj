@@ -25,8 +25,9 @@
 		74C7DE331AD8A4870007FBAC /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C7DE321AD8A4870007FBAC /* NetworkController.swift */; };
 		74C7DE371AD8B58E0007FBAC /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C7DE361AD8B58E0007FBAC /* Repository.swift */; };
 		74C7DE391ADB26820007FBAC /* SearchRepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C7DE381ADB26820007FBAC /* SearchRepoViewController.swift */; };
-		74D075451ADB38FA00BD3A3C /* SearchRepoViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74D075441ADB38FA00BD3A3C /* SearchRepoViewCell.xib */; };
 		74D075481ADB413C00BD3A3C /* SearchRepoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D075461ADB413C00BD3A3C /* SearchRepoViewCell.swift */; };
+		74DEF41C1AE0F57100CBE1F8 /* SearchRepoViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74DEF41B1AE0F57100CBE1F8 /* SearchRepoViewCell.xib */; };
+		74DEF41E1AE0F89900CBE1F8 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DEF41D1AE0F89900CBE1F8 /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +63,9 @@
 		74C7DE321AD8A4870007FBAC /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		74C7DE361AD8B58E0007FBAC /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		74C7DE381ADB26820007FBAC /* SearchRepoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRepoViewController.swift; sourceTree = "<group>"; };
-		74D075441ADB38FA00BD3A3C /* SearchRepoViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchRepoViewCell.xib; sourceTree = "<group>"; };
 		74D075461ADB413C00BD3A3C /* SearchRepoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRepoViewCell.swift; sourceTree = "<group>"; };
+		74DEF41B1AE0F57100CBE1F8 /* SearchRepoViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchRepoViewCell.xib; sourceTree = "<group>"; };
+		74DEF41D1AE0F89900CBE1F8 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				7497AD531AD851E9001DDDDE /* Main.storyboard */,
-				74D075441ADB38FA00BD3A3C /* SearchRepoViewCell.xib */,
+				74DEF41B1AE0F57100CBE1F8 /* SearchRepoViewCell.xib */,
 				74D075461ADB413C00BD3A3C /* SearchRepoViewCell.swift */,
 			);
 			name = "View Layer";
@@ -165,6 +167,7 @@
 		7497AD711AD85211001DDDDE /* Controller Layer */ = {
 			isa = PBXGroup;
 			children = (
+				74DEF41D1AE0F89900CBE1F8 /* WebViewController.swift */,
 				74C7DE321AD8A4870007FBAC /* NetworkController.swift */,
 				7497AD761AD8781D001DDDDE /* MenuTableViewController.swift */,
 				7497AD511AD851E9001DDDDE /* ViewController.swift */,
@@ -270,7 +273,6 @@
 				74C7DE281AD880300007FBAC /* Layer-11_48px.png in Resources */,
 				7497AD551AD851E9001DDDDE /* Main.storyboard in Resources */,
 				7497AD5A1AD851E9001DDDDE /* LaunchScreen.xib in Resources */,
-				74D075451ADB38FA00BD3A3C /* SearchRepoViewCell.xib in Resources */,
 				7497AD571AD851E9001DDDDE /* Images.xcassets in Resources */,
 				7497AD731AD852AC001DDDDE /* server.js in Resources */,
 				74C7DE2F1AD882ED0007FBAC /* Layer-39_24px.png in Resources */,
@@ -278,6 +280,7 @@
 				74C7DE311AD883BE0007FBAC /* Layer-29_24px.png in Resources */,
 				74C7DE2D1AD882D10007FBAC /* Layer-87_24px.png in Resources */,
 				74C7DE261AD87FE50007FBAC /* Layer-11_96px.png in Resources */,
+				74DEF41C1AE0F57100CBE1F8 /* SearchRepoViewCell.xib in Resources */,
 				7497AD751AD85462001DDDDE /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +306,7 @@
 				7497AD771AD8781D001DDDDE /* MenuTableViewController.swift in Sources */,
 				74C7DE391ADB26820007FBAC /* SearchRepoViewController.swift in Sources */,
 				74C7DE371AD8B58E0007FBAC /* Repository.swift in Sources */,
+				74DEF41E1AE0F89900CBE1F8 /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
