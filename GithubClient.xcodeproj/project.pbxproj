@@ -168,10 +168,10 @@
 			isa = PBXGroup;
 			children = (
 				74C7DE321AD8A4870007FBAC /* NetworkController.swift */,
-				74DEF41D1AE0F89900CBE1F8 /* WebViewController.swift */,
 				7497AD761AD8781D001DDDDE /* MenuTableViewController.swift */,
-				7497AD511AD851E9001DDDDE /* ViewController.swift */,
 				74C7DE381ADB26820007FBAC /* SearchRepoViewController.swift */,
+				74DEF41D1AE0F89900CBE1F8 /* WebViewController.swift */,
+				7497AD511AD851E9001DDDDE /* ViewController.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
