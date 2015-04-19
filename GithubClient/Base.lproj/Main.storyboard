@@ -121,7 +121,9 @@
                             <outlet property="delegate" destination="za4-rp-qLd" id="fKb-0R-Xhh"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="jWu-Z0-3MZ"/>
+                    <navigationItem key="navigationItem" title="GithubClient" id="jWu-Z0-3MZ">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="z17-6x-toV"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OpV-PV-Wev" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -145,7 +147,7 @@
             </objects>
             <point key="canvasLocation" x="281" y="471.99999999999994"/>
         </scene>
-        <!--Search Repo View Controller-->
+        <!--Repository Search-->
         <scene sceneID="QOb-Yw-u1T">
             <objects>
                 <viewController id="rAi-ed-8Oo" customClass="SearchRepoViewController" customModule="GithubClient" customModuleProvider="target" sceneMemberID="viewController">
@@ -187,7 +189,9 @@
                             <constraint firstItem="gWL-Wn-84i" firstAttribute="top" secondItem="tzv-Jn-vn0" secondAttribute="topMargin" id="jpc-0O-TP7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="e2Y-4d-14x"/>
+                    <navigationItem key="navigationItem" title="Repository Search" id="e2Y-4d-14x">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="uqb-id-5ud"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchTerm" destination="EjB-Lr-r7m" id="ETg-LE-hWd"/>
                         <outlet property="tableView" destination="gWL-Wn-84i" id="qkW-6o-1Qa"/>
@@ -195,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAl-6n-OLn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1792" y="471"/>
+            <point key="canvasLocation" x="1818" y="30"/>
         </scene>
     </scenes>
     <resources>

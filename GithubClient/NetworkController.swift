@@ -5,12 +5,17 @@
 //  Created by Gru on 04/10/15.
 //  Copyright (c) 2015 GruTech. All rights reserved.
 //
+//  NOTE: https://developer.github.com/v3/oauth/ 
+//        When you're setting up OAuth use the link above to docs on OAuth/Web Flow
+//
+//  -->   Look into 'Singleton' and 'Computed Properties'
 
 import UIKit
 
 class NetworkController {
 
-    var DBUG : Bool = false
+    var DBUG     : Bool = false
+    var EXAMPLE1 : Bool = false
 
     //   WARNING - These two items should never make it into Github, especially when you're
     //             going to submit this or any other app to the Apple Store.
@@ -22,13 +27,14 @@ class NetworkController {
     var urlSession : NSURLSession
     let accessTokenUserDefaultsKey = "accessToken"
     var accessToken : String?
+    var accessTokenKeyComponent : String?
 
-    //singleton
-    class var sharedNetworkController : NetworkController {
-        struct Static {
-            static let instance : NetworkController = NetworkController()
-        }
-        return Static.instance
+    //  Singleton / Computed Properties / W3D2.3 7:22
+    class var sharedNetworkController : NetworkController {                     // Computed type property
+        struct Static {                                                         // Nested Struct
+            static let instance : NetworkController = NetworkController()       // Static Properties
+        }       // ^^^ makes it so there is only one occurance
+        return Static.instance                                                  // Returns the computed property
     }
 
     init() {
@@ -42,8 +48,10 @@ class NetworkController {
 
     func requestAccessToken() {
         if DBUG { println( "NetworkController::requestAccessToken()" ) }
+        //         https://github.com/login/oauth/authorize
 
         let url = "https://github.com/login/oauth/authorize?client_id=\(self.clientId)&scope=user,repo"
+
         UIApplication.sharedApplication().openURL(NSURL(string: url)!)
     }
 
@@ -57,7 +65,7 @@ class NetworkController {
     func getRepositoriesForGivenSearchTerm( searchTerm : String, callback : ( [Repository]?, String? ) -> (Void))  {
 
         //    let url = NSURL( string: "http://127.0.0.1:3000" )                                          // Phase I
-        let url = NSURL( string: "https://api.github.com/search/repositories?q=\(searchTerm)" )     // Phase II
+        let url = NSURL( string: "https://api.github.com/search/repositories?q=\(searchTerm)" )           // Phase II
 
         let dataTask = self.urlSession.dataTaskWithURL( url!, completionHandler: { (data, urlResponse, error ) -> Void in
             if error == nil {
@@ -101,22 +109,77 @@ class NetworkController {
         dataTask.resume()
     }
 
+    //
+    //  Discription: Dealing w/ OAuth
+    //
     func handleCallbackURL( url: NSURL ) {
 
         println( "NetworkController::handleCallbackURL[\(url)]" )
-        let oauthURL = url.query
-        println( "code\(oauthURL)" )
+        let code = url.query
+        println( "code\(code)" )
 
-        let baseURL = "https://github.com/login/oauth/access_token?\(oauthURL!)&client_id=\(self.clientId)&client_secret=\(self.clientSecret)"
+        // This is an example of getting thru GITHUB's security.
+        // This is one way you can pass back info in a POST, via passing items as parameters in the URL!
+        if EXAMPLE1 {
 
-        let postRequest = NSMutableURLRequest( URL: NSURL( string: oauthURL!)!)
-        postRequest.HTTPMethod = "POST"
+            let oauthURL = "https://github.com/login/oauth/access_token?\(code!)" +
+                           "&client_id=\(self.clientId)" +
+                           "&client_secret=\(self.clientSecret)"
 
-        let dataTask = self.urlSession.dataTaskWithRequest(postRequest, completionHandler: {
-            (data, response, error) -> Void in
-            println( "\(data)" )
-        })
-        dataTask.resume()
+            let postRequest = NSMutableURLRequest( URL: NSURL( string: oauthURL)!)
+                postRequest.HTTPMethod = "POST"     // PUT, POST, ...
+
+            let dataTask = self.urlSession.dataTaskWithRequest( postRequest, completionHandler: {
+                (data, response, error) -> Void in
+                    println( "\(response)" )
+                })
+            dataTask.resume()
+
+        } else {
+        //
+        // This is the 2nd way you can pass back info with a POST!
+        // This example is passing back into in the BODY of the HTTP Request
+
+            let bodyString = "\(code!)&client_id=\(self.clientId)&client_secret=\(self.clientSecret)"
+            let bodyData   = bodyString.dataUsingEncoding( NSASCIIStringEncoding, allowLossyConversion : true )
+            let length     = bodyData!.length
+            let postRequest = NSMutableURLRequest( URL: NSURL( string: "https://github.com/login/oauth/access_token" )!)
+
+            postRequest.HTTPMethod = "POST"
+            postRequest.setValue("\(length)", forHTTPHeaderField: "Content-Length" )
+            postRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type" )
+            postRequest.HTTPBody = bodyData
+
+            let dataTask   = self.urlSession.dataTaskWithRequest(postRequest, completionHandler: {
+                (data, response, error) -> Void in
+                if error == nil {
+                    if let httpResponse = response as? NSHTTPURLResponse {
+                        switch httpResponse.statusCode {
+                        case 200...299:
+                            let tokenResponse = NSString( data: data, encoding: NSASCIIStringEncoding)
+                            println(tokenResponse)
+
+                            let accessTokenKey           = tokenResponse?.componentsSeparatedByString("&").first as String
+                            let accessTokenValue         = accessTokenKey.componentsSeparatedByString("=").last
+                            println(accessTokenValue!)
+
+                            self.accessToken             = accessTokenValue
+                            self.accessTokenKeyComponent = accessTokenKey
+
+                            // Save 'accessToken' in 'User Defaults'
+                            NSUserDefaults.standardUserDefaults().setObject( self.accessToken,
+                                                                     forKey: self.accessTokenKeyComponent!)
+                            NSUserDefaults.standardUserDefaults().synchronize()
+                        default:
+                            println("Default Case, Error retrieving the access token.")
+                        }
+                    }
+                }
+
+                println(response)
+            })
+            dataTask.resume()
+        }
     }
 
     // ----------------------------------------------------------------------------------------------
