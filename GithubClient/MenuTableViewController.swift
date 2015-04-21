@@ -15,8 +15,8 @@ class MenuTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let appDelegate         = UIApplication.sharedApplication().delegate as AppDelegate
-        self.networkController  = appDelegate.networkController
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        self.networkController = appDelegate.networkController
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -27,13 +27,9 @@ class MenuTableViewController: UITableViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear( animated )
-
-        // Using the 'Singleton' - To use, or not to use.
-        if NetworkController.sharedNetworkController.accessToken == nil {
-            self.networkController.requestAccessToken()
-        }
+        self.networkController.requestAccessToken()
+        
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

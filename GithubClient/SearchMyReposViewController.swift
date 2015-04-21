@@ -1,20 +1,19 @@
 //
-//  SearchRepoViewController.swift
+//  SearchMyReposViewController.swift
 //  GithubClient
 //
-//  Created by Gru on 04/12/15.
+//  Created by Gru on 04/21/15.
 //  Copyright (c) 2015 GruTech. All rights reserved.
 //
 
 import UIKit
 
-class SearchRepoViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
-
-    let DBUG : Bool = true
+class SearchMyReposViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var searchTerm: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
 
+    let DBUG : Bool       = true
     var networkController : NetworkController!
 
     var repositories      = [Repository]()           // Results of repository search
@@ -61,9 +60,9 @@ class SearchRepoViewController : UIViewController, UITableViewDataSource, UITabl
 
         let repoCell  = tableView.dequeueReusableCellWithIdentifier( "CELL_REPO", forIndexPath: indexPath ) as SearchRepoViewCell
         if (repoCell.repoName.text != nil)  {
-            println( "SearchRepoViewController::tableView[\(repoCell.repoName.text)]" )
+            println( "SearchMyReposViewController::tableView[\(repoCell.repoName.text)]" )
         } else {
-            println( "Trouble in SearchRepoViewController::tableView" )
+            println( "Trouble in SearchMyReposViewController::tableView" )
         }
 
         let repoEntry = repositories[indexPath.row]
@@ -92,6 +91,5 @@ class SearchRepoViewController : UIViewController, UITableViewDataSource, UITabl
         })
         //Dismiss keyboard.
         searchBar.resignFirstResponder()
-    } 
-    
+    }
 }

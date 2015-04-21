@@ -140,9 +140,9 @@ class NetworkController {
         // This is the 2nd way you can pass back info with a POST!
         // This example is passing back into in the BODY of the HTTP Request
 
-            let bodyString  = "\(code!)&client_id=\(self.clientId)&client_secret=\(self.clientSecret)"
-            let bodyData    = bodyString.dataUsingEncoding( NSASCIIStringEncoding, allowLossyConversion : true )
-            let length      = bodyData!.length
+            let bodyString = "\(code!)&client_id=\(self.clientId)&client_secret=\(self.clientSecret)"
+            let bodyData   = bodyString.dataUsingEncoding( NSASCIIStringEncoding, allowLossyConversion : true )
+            let length     = bodyData!.length
             let postRequest = NSMutableURLRequest( URL: NSURL( string: "https://github.com/login/oauth/access_token" )!)
 
             postRequest.HTTPMethod = "POST"

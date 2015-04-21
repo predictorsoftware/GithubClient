@@ -24,19 +24,13 @@ TODO :
     cd to folder where 'server.js' is located
     On the command line:    node server.js
 
-    Make a simple example of OAuth
-
-    Computed Properties
-
-    Animation in iOS, Motion Design for iOS, by Mike Rundle
-
 //  ---------------------------------------------------------------------------------------------------------
 //  Tuesday
 //
 // [x]  Implement an OAuth workflow in your app that successfully lets the user authenticate with your app.
 // [x]  Implement a UISearchBar on your repo search view controller and modify your repo search fetch method on your network controller to use the search bar’s text. Be sure to only be making authenticated network calls using your oath token!
 // [x]  Display the repo’s they searched for a in the table view
-// [x]  Implement user defaults to store the authorization token, so it only does the OAuth process once.
+// [ ]  Implement user defaults to store the authorization token, so it only does the OAuth process once.
 // [x]  Convert your network controller to a singleton
 
 //  ---------------------------------------------------------------------------------------------------------
