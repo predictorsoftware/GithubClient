@@ -29,6 +29,7 @@
 		74DEF41C1AE0F57100CBE1F8 /* SearchRepoViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74DEF41B1AE0F57100CBE1F8 /* SearchRepoViewCell.xib */; };
 		74DEF41E1AE0F89900CBE1F8 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DEF41D1AE0F89900CBE1F8 /* WebViewController.swift */; };
 		74EED0ED1AE6C41C0005FE94 /* SearchMyReposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EED0EC1AE6C41C0005FE94 /* SearchMyReposViewController.swift */; };
+		74EED0EF1AE6F1680005FE94 /* SearchForUserReposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EED0EE1AE6F1680005FE94 /* SearchForUserReposViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		74DEF41B1AE0F57100CBE1F8 /* SearchRepoViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchRepoViewCell.xib; sourceTree = "<group>"; };
 		74DEF41D1AE0F89900CBE1F8 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		74EED0EC1AE6C41C0005FE94 /* SearchMyReposViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMyReposViewController.swift; sourceTree = "<group>"; };
+		74EED0EE1AE6F1680005FE94 /* SearchForUserReposViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchForUserReposViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				7497AD511AD851E9001DDDDE /* ViewController.swift */,
 				74C7DE381ADB26820007FBAC /* SearchRepoViewController.swift */,
 				74EED0EC1AE6C41C0005FE94 /* SearchMyReposViewController.swift */,
+				74EED0EE1AE6F1680005FE94 /* SearchForUserReposViewController.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				7497AD501AD851E9001DDDDE /* AppDelegate.swift in Sources */,
 				7497AD771AD8781D001DDDDE /* MenuTableViewController.swift in Sources */,
 				74C7DE391ADB26820007FBAC /* SearchRepoViewController.swift in Sources */,
+				74EED0EF1AE6F1680005FE94 /* SearchForUserReposViewController.swift in Sources */,
 				74C7DE371AD8B58E0007FBAC /* Repository.swift in Sources */,
 				74DEF41E1AE0F89900CBE1F8 /* WebViewController.swift in Sources */,
 			);

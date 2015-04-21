@@ -14,6 +14,14 @@ import UIKit
 
 class NetworkController {
 
+    //  Singleton / Computed Properties / W3D2.3 7:22
+    class var sharedNetworkController : NetworkController {                     // Computed type property
+        struct Static {                                                         // Nested Struct
+            static let instance : NetworkController = NetworkController()       // Static Properties
+        }       // ^^^ makes it so there is only one occurance
+        return Static.instance                                                  // Returns the computed property
+    }
+
     var DBUG     : Bool = false
     var EXAMPLE1 : Bool = false
 
@@ -28,14 +36,6 @@ class NetworkController {
     let accessTokenUserDefaultsKey = "accessToken"
     var accessToken : String?
     var accessTokenKeyComponent : String?
-
-    //  Singleton / Computed Properties / W3D2.3 7:22
-    class var sharedNetworkController : NetworkController {                     // Computed type property
-        struct Static {                                                         // Nested Struct
-            static let instance : NetworkController = NetworkController()       // Static Properties
-        }       // ^^^ makes it so there is only one occurance
-        return Static.instance                                                  // Returns the computed property
-    }
 
     init() {
         let ephemeralConfig = NSURLSessionConfiguration.ephemeralSessionConfiguration()
@@ -108,6 +108,115 @@ class NetworkController {
         })
         dataTask.resume()
     }
+
+    // ----------------------------------------------------------------------------------------------
+    //  Function: getRepositoriesForGivenSearchTerm()        AKA. fetchRepositoriesForSearchTerm()
+    //      Info: see http://developer.github.com for GitHub API
+    //            Using their 'Search' endpoint, to look for repositories
+    //
+    // Example: curl https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc
+    //
+    func getRepositoriesForGivenUser( searchTerm : String, callback : ( [Repository]?, String? ) -> (Void))  {
+
+        //    let url = NSURL( string: "http://127.0.0.1:3000" )                                          // Phase I
+        let url = NSURL( string: "https://api.github.com/search/repositories?q=user:\(searchTerm)" )      // Phase II
+
+        let dataTask = self.urlSession.dataTaskWithURL( url!, completionHandler: { (data, urlResponse, error ) -> Void in
+            if error == nil {
+                if self.DBUG { println( "       data[\(data)]" ) }
+                println( "urlResponse[\(urlResponse)]" )
+                println( "      error[\(error)]" )
+
+                if let response = urlResponse as? NSHTTPURLResponse {
+
+                    switch response.statusCode {
+                    case 200...299:
+                        var repositories = [Repository]()
+                        var errorPtr : NSError?
+                        let jsonDictionary = NSJSONSerialization.JSONObjectWithData( data, options: nil, error: &errorPtr ) as [String : AnyObject]
+
+                        if let items = jsonDictionary["items"] as? [[String : AnyObject]] {
+                            var n = 0
+                            for item in items {
+                                let repo = Repository( jsonRepository: item )
+                                repositories.append( repo )
+                                println( "\n item[\(n)] \(item)" )
+                                n++
+                            }
+                        }
+
+                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in callback( repositories, "" ) })
+
+                        println( "\n" )
+                        println( "Repositories --> \(repositories) " );
+                        println( "count --> \(repositories.count) " );
+                        if repositories.count > 0 {
+                            println( repositories[0].author )
+                        }
+
+                    default:
+                        callback( nil, "Error occured while retrieving items in the repository based on search term: \(searchTerm)" )
+                    }
+                }
+            }
+        })
+        dataTask.resume()
+    }
+
+    // ----------------------------------------------------------------------------------------------
+    //  Function: getRepositoriesForMe()        AKA. fetchRepositoriesForSearchTerm()
+    //      Info: see http://developer.github.com for GitHub API
+    //            Using their 'Search' endpoint, to look for repositories
+    //
+    // Example:      https://api.github.com/search/repositories?q=user:\(userName)")!)
+    //
+    func getRepositoriesForMe( callback : ( [Repository]?, String? ) -> (Void))  {
+
+        //    let url = NSURL( string: "http://127.0.0.1:3000" )                                          // Phase I
+        let url = NSURL( string: "https://api.github.com/search/repositories?q=user:dakoch" )      // Phase II
+
+        let dataTask = self.urlSession.dataTaskWithURL( url!, completionHandler: { (data, urlResponse, error ) -> Void in
+            if error == nil {
+                if self.DBUG { println( "       data[\(data)]" ) }
+                println( "urlResponse[\(urlResponse)]" )
+                println( "      error[\(error)]" )
+
+                if let response = urlResponse as? NSHTTPURLResponse {
+
+                    switch response.statusCode {
+                    case 200...299:
+                        var repositories = [Repository]()
+                        var errorPtr : NSError?
+                        let jsonDictionary = NSJSONSerialization.JSONObjectWithData( data, options: nil, error: &errorPtr ) as [String : AnyObject]
+
+                        if let items = jsonDictionary["items"] as? [[String : AnyObject]] {
+                            var n = 0
+                            for item in items {
+                                let repo = Repository( jsonRepository: item )
+                                repositories.append( repo )
+                                println( "\n item[\(n)] \(item)" )
+                                n++
+                            }
+                        }
+
+                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in callback( repositories, "" ) })
+
+                        println( "\n" )
+                        println( "Repositories --> \(repositories) " );
+                        println( "count --> \(repositories.count) " );
+                        if repositories.count > 0 {
+                            println( repositories[0].author )
+                        }
+
+                    default:
+                        callback( nil, "Error occured while retrieving items in the repository based on the user's id." )
+                    }
+                }
+            }
+        })
+        dataTask.resume()
+    }
+
 
     //
     //  Discription: Dealing w/ OAuth

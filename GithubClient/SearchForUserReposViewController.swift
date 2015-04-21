@@ -1,5 +1,5 @@
 //
-//  SearchMyReposViewController.swift
+//  SearchForUserReposViewController.swift
 //  GithubClient
 //
 //  Created by Gru on 04/21/15.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class SearchMyReposViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class SearchForUserReposViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
 
     @IBOutlet weak var searchTerm: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-
+    
     let DBUG : Bool       = true
     var networkController = NetworkController.sharedNetworkController
 
@@ -33,8 +33,6 @@ class SearchMyReposViewController : UIViewController, UITableViewDataSource, UIT
 
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         self.networkController = appDelegate.networkController
-
-        searchForUsersRepositories()
 
     }
 
@@ -78,17 +76,21 @@ class SearchMyReposViewController : UIViewController, UITableViewDataSource, UIT
         return repoCell
     }
 
-    func searchForUsersRepositories() {
+    func searchBarSearchButtonClicked( searchBar: UISearchBar) {
+
+        println( "searchBar[\(searchBar.text)]" )
+        println( "searchTerm[\(searchTerm.text)]" )
 
         let repos   = [Repository]()
         //Search repositories.
-        self.networkController.getRepositoriesForMe( { ( repos, NilLiteralConvertible) -> () in
+        self.networkController.getRepositoriesForGivenUser( searchBar.text, callback: { ( repos, NilLiteralConvertible) -> () in
             println( "repositories[\(repos)]" )
             if repos != nil {
                 self.repositories = repos!
             }
             self.tableView.reloadData()
         })
-
+        //Dismiss keyboard.
+        searchBar.resignFirstResponder()
     }
 }
