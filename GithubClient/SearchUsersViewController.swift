@@ -76,19 +76,11 @@ class SearchUsersViewController: UIViewController, UICollectionViewDataSource, U
 
                 UIView.animateWithDuration( 0.4, animations: { () -> Void in
                     cell.imageView.alpha = 1
-                    cell.imageView.transform = CGAffineTransformMakeScale( -2.0, -2.0 )
+                    cell.imageView.transform = CGAffineTransformMakeScale( 1.0, 1.0 )
                 })
             })
         }
-//            NetworkController.sharedNetworkController.getAvatarImageForURL( user.avatarURL, completionHandler: {
-//                (image) -> (Void) in
-//                cell.imageView.image = image
-//                user.avatarImage = image
-//                self.users[indexPath.row] = user
-//            })
-//        } else {
-//            cell.imageView.image = user.avatarImage
-//        }
+
         return cell
     }
 

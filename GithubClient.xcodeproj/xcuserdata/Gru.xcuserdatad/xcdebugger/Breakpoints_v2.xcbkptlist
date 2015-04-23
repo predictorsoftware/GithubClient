@@ -73,7 +73,7 @@
                   symbolName = "GithubClient.SearchRepoViewController.searchBarSearchButtonClicked (GithubClient.SearchRepoViewController)(ObjectiveC.UISearchBar) -&gt; ()"
                   moduleName = "GithubClient"
                   urlString = "file:///Users/Gru/Workspaces/GruTech/GithubClient/GithubClient/SearchRepoViewController.swift"
-                  timestampString = "451509290.731653"
+                  timestampString = "451515836.930589"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "86"
@@ -87,7 +87,7 @@
                   symbolName = "GithubClient.SearchRepoViewController.(searchBarSearchButtonClicked (GithubClient.SearchRepoViewController) -&gt; (ObjectiveC.UISearchBar) -&gt; ()).(closure #1)"
                   moduleName = "GithubClient"
                   urlString = "file:///Users/Gru/Workspaces/GruTech/GithubClient/GithubClient/SearchRepoViewController.swift"
-                  timestampString = "451509290.733679"
+                  timestampString = "451515836.931454"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -157,7 +157,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
             endingLineNumber = "99"
-            landmarkName = "navigationController(_:animationControllerForOperation:fromViewController:toViewController:)"
+            landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

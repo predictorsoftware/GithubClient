@@ -58,7 +58,7 @@
                                             <segue destination="lhA-5e-osK" kind="show" id="4S0-yh-AJw"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ubH-qV-d0X" imageView="Fx9-PL-hK0" rowHeight="54" style="IBUITableViewCellStyleDefault" id="7xE-LK-k3f">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ubH-qV-d0X" imageView="Fx9-PL-hK0" rowHeight="54" style="IBUITableViewCellStyleDefault" id="7xE-LK-k3f">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7xE-LK-k3f" id="9Bd-9E-GYn">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -324,10 +324,10 @@
             </objects>
             <point key="canvasLocation" x="1818" y="1281"/>
         </scene>
-        <!--Search Users View Controller-->
+        <!--User Search-->
         <scene sceneID="iTR-yi-wj2">
             <objects>
-                <viewController id="kZX-1Z-tul" customClass="SearchUsersViewController" customModule="GithubClient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="User Search" id="kZX-1Z-tul" customClass="SearchUsersViewController" customModule="GithubClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fN6-ND-k8l"/>
                         <viewControllerLayoutGuide type="bottom" id="r8C-C8-VaD"/>
