@@ -37,12 +37,15 @@ class NetworkController {
     var accessToken : String?
     var accessTokenKeyComponent : String?
 
+    let imageQueue = NSOperationQueue()
+
     init() {
         let ephemeralConfig = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         self.urlSession     = NSURLSession( configuration: ephemeralConfig )
 
         if let accessToken = NSUserDefaults.standardUserDefaults().objectForKey(self.accessTokenUserDefaultsKey) as? String {
             self.accessToken = accessToken
+            if DBUG { println( "accessToken[\(self.accessToken)]" ) }
         }
     }
 
@@ -109,6 +112,77 @@ class NetworkController {
         dataTask.resume()
     }
 
+    func fetchUserBySearchTerm(searchTerm: String, callback: ([User]?, String?) -> ()) {
+        //URL: with authorization
+        let urlRequest = NSMutableURLRequest(URL: NSURL(string: "https://api.github.com/search/users?q=\(searchTerm)")!)
+        urlRequest.setValue("token \(accessToken!)", forHTTPHeaderField: "Authorization")
+
+        //Execute request.
+        let dataTask = urlSession.dataTaskWithRequest(urlRequest, completionHandler: { (jsonData, urlResponse, error) -> Void in
+            if error == nil {
+                let response = urlResponse as NSHTTPURLResponse
+                switch response.statusCode {
+                case 200...299:
+                    //Parse JSON response.
+                    var users = [User]()
+                    var errorPointer: NSError?
+                    if let jsonDictonary = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &errorPointer) as? [String : AnyObject] {
+                        var n = 0
+                        if let items = jsonDictonary["items"] as? [[String : AnyObject]] {
+                            for item in items {
+                                println( "[\(n)] item[\(item)]" )
+                                users.append(User(userJSONDictionary: item))
+                                n++
+                            } //end for
+                        } //end if
+                    } //end if
+
+                    //Return to main queue.
+                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                        callback(users, nil)
+                    }) //end closure
+                default:
+                    callback(nil, "Error retrieving user by search term")
+                } //end switch
+            } //end if
+        }) //end closure
+        dataTask.resume()
+    } //end func
+
+    
+//    func fetchUsersForSearch( search : String, completionHandler : ( [User]?, String? ) -> (Void)) {
+//
+//        let searchURL = "https://api.github.com/search/users?q="
+//        let url       = searchURL + search
+//
+//        let request   = NSMutableURLRequest( URL: NSURL( string: url )!)
+//
+//
+//        if  let token  = NSUserDefaults.standardUserDefaults().objectForKey("githubToken") as? String {
+//            request.setValue( "token \(token)", forHTTPHeaderField: "Authorization" )
+//        }
+//        println( "token[\(self.accessToken)]" )
+//
+//        let dataTask = NSURLSession.sharedSession().dataTaskWithRequest( request, completionHandler: {
+//            (data, response, error) -> Void in
+//
+//            if error == nil {
+//
+//                println( "data[\(data.length)]" )
+//                let users = UserJSONParser.usersFromJSONData(data)
+//                println( users )
+//
+//        //            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+//        //                println("Ping")
+//        //                completionHandler( users, nil )
+//        //                println( users )
+//        //
+//        //            })'
+//            }
+//        })
+//        dataTask.resume()
+//    }
+
     // ----------------------------------------------------------------------------------------------
     //  Function: getRepositoriesForGivenSearchTerm()        AKA. fetchRepositoriesForSearchTerm()
     //      Info: see http://developer.github.com for GitHub API
@@ -164,7 +238,7 @@ class NetworkController {
     }
 
     // ----------------------------------------------------------------------------------------------
-    //  Function: getRepositoriesForMe()        AKA. fetchRepositoriesForSearchTerm()
+    //  Function: getRepositoriesForMe()
     //      Info: see http://developer.github.com for GitHub API
     //            Using their 'Search' endpoint, to look for repositories
     //
@@ -215,6 +289,20 @@ class NetworkController {
             }
         })
         dataTask.resume()
+    }
+
+    func getAvatarImageForURL( url : String, completionHandler : (UIImage) -> (Void)) {
+
+        let url = NSURL(string: url)
+
+        self.imageQueue.addOperationWithBlock { () -> Void in
+            let imageData = NSData(contentsOfURL: url!)
+            let image = UIImage(data: imageData!)
+
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(image!)
+            })
+        }
     }
 
 
