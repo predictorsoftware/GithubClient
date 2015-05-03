@@ -12,10 +12,10 @@ class SearchForUserReposViewController : UIViewController, UITableViewDataSource
 
 
     @IBOutlet weak var searchTerm: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
-    
-    let DBUG : Bool       = true
+    @IBOutlet weak var tableView:  UITableView!
+
     var networkController = NetworkController.sharedNetworkController
+    let DBUG : Bool       = NetworkController.sharedNetworkController.DBUG
 
     var repositories      = [Repository]()           // Results of repository search
 

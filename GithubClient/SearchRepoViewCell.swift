@@ -15,20 +15,23 @@ class SearchRepoViewCell: UITableViewCell {
     @IBOutlet weak var repoAuthor: UILabel!
     @IBOutlet weak var repoCreatedAt: UILabel!
 
-        //Function: Set up Nib.
-        override func awakeFromNib() {
-            //Super:
-            super.awakeFromNib()
+    // ---------------------------------------------------------------------
+    // Function: awakeFromNib()
+    override func awakeFromNib() {
 
-            self.repoAuthor.font    = UIFont(name: "Helvetica Neue", size: 10.0)
-            self.reproHtmlURL.font  = UIFont(name: "Helvetica Neue", size: 10.0)
-            self.repoCreatedAt.font = UIFont(name: "Helvetica Neue", size: 10.0)
-        }
+        super.awakeFromNib()
 
-        override func setSelected(selected: Bool, animated: Bool) {
-            super.setSelected(selected, animated: animated)
+        self.repoAuthor.font    = UIFont(name: "Helvetica Neue", size: 10.0)
+        self.reproHtmlURL.font  = UIFont(name: "Helvetica Neue", size: 10.0)
+        self.repoCreatedAt.font = UIFont(name: "Helvetica Neue", size: 10.0)
+    }
+
+    // ---------------------------------------------------------------------
+    // Function: awakeFromNib()
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
             
             // Configure the view for the selected state
-        }
+    }
         
 }

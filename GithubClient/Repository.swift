@@ -10,17 +10,17 @@ import Foundation
 
 struct Repository {
 
-    let name:       String
-    let author:     String!             //  owner
-    let     avatarURL:  String!         //  avatar_url
-    let     gravatarId:  String!        //  gravatar_id
-    let     id:  Int!                   //  id
-    let     login:  String!             //  login
-    let     receivedEventsURL:  String! //  received_events_url
-    let     type:  String!              //  type
-    let     url:  String!               //  url
-    let htmlURL: String                 // html_url
-    let createdAt: String               // created_at
+    let name:               String
+    let author:             String! //  owner
+    let avatarURL:          String! //  avatar_url
+    let gravatarId:         String! //  gravatar_id
+    let id:                 Int!    //  id
+    let login:              String! //  login
+    let receivedEventsURL:  String! //  received_events_url
+    let type:               String! //  type
+    let url:                String! //  url
+    let htmlURL:            String  //  html_url
+    let createdAt:          String  //  created_at
 
 
     init( jsonRepository : [String : AnyObject]) {

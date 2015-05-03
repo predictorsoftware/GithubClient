@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
 
-        println( "AppDelegate w/ openURL[\(url)]" )
+    //  println( "AppDelegate w/ openURL[\(url)]" )
         self.networkController.handleCallbackURL( url )
         
         return true
@@ -51,13 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-    //  Function: In response to another application opening app.
-//    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-//
-//    //  NetworkController.handleCallbackURL(url)
-//        return true
-//    }
 
 }
 

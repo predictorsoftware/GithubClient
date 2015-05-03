@@ -16,7 +16,8 @@ class SearchUsersViewController: UIViewController, UICollectionViewDataSource, U
     let imageFetchService       = ImageFetchService()
     var networkController       = NetworkController.sharedNetworkController
 
-    let DBUG                    = NetworkController.sharedNetworkController.DBUG
+    let DBUG                    = true //NetworkController.sharedNetworkController.DBUG
+    
     var users                   = [User]()
     
     override func viewDidLoad() {
@@ -29,11 +30,8 @@ class SearchUsersViewController: UIViewController, UICollectionViewDataSource, U
 
     override func viewWillAppear( animated: Bool ) {
         super.viewWillAppear( animated )
-//      self.navigationController.delegate = self   // NavigationController
     }
 
-    //            destination.selectionUser = user
-    //            (UINavigationController, animationControllerForOperation: UINavigationControllerOperation, forViewController: UIViewController, toViewController: UIViewController) ->UIView
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.delegate = nil
@@ -42,7 +40,7 @@ class SearchUsersViewController: UIViewController, UICollectionViewDataSource, U
     func searchBarSearchButtonClicked( searchBar: UISearchBar ) {
         if DBUG { println( "searchBarSearchButtonClicked[\(searchBar.text)]" ) }
         searchBar.resignFirstResponder()
-        NetworkController.sharedNetworkController.fetchUserBySearchTerm( searchBar.text,
+        NetworkController.sharedNetworkController.getUserBySearchTerm( searchBar.text,
             callback:  { (users, error) -> (Void) in
                 self.users = users!
                 self.collectionView.reloadData()
@@ -50,7 +48,7 @@ class SearchUsersViewController: UIViewController, UICollectionViewDataSource, U
     }
 
     func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        return true // text.validForURL()
+        return text.validForURL()
     }
 
     func collectionView( collectionView: UICollectionView, numberOfItemsInSection section: Int ) -> Int {
@@ -96,13 +94,19 @@ class SearchUsersViewController: UIViewController, UICollectionViewDataSource, U
         }
     }
 
+
     override func prepareForSegue( segue: UIStoryboardSegue, sender: AnyObject? ) {
 
-        if segue.identifier == "USER_CELL" {
+        if segue.identifier == "DETAIL_USER" {  //  DETAIL_USER   USER_CELL
 
-            let destination = segue.destinationViewController as UserDetailViewController
-            let indexPath   = self.collectionView.indexPathsForSelectedItems().first as NSIndexPath
-            let user        = self.users[indexPath.row]
+            let destination              = segue.destinationViewController as UserDetailViewController
+            let indexPath                = self.collectionView.indexPathsForSelectedItems().first as NSIndexPath
+                destination.selectedUser = self.users[indexPath.row]
+
+            if DBUG { println( "accessToken[\(self.users[indexPath.row].avatarURL)] [\(destination.selectedUser.avatarURL)]" ) }
+            if DBUG { println( "accessToken[\(self.users[indexPath.row].htmlURL)] [\(destination.selectedUser.htmlURL)]" ) }
+            if DBUG { println( "accessToken[\(self.users[indexPath.row].name)] [\(destination.selectedUser.name)]" ) }
+            if DBUG { println( "accessToken[\(self.users[indexPath.row].avatarImage)] [\(destination.selectedUser.avatarImage)]" ) }
 
         }
     }

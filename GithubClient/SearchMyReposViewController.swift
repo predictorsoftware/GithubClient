@@ -10,8 +10,6 @@ import UIKit
 
 class SearchMyReposViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
-
-    @IBOutlet weak var searchTerm: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
 
     let DBUG : Bool       = true
@@ -28,8 +26,6 @@ class SearchMyReposViewController : UIViewController, UITableViewDataSource, UIT
 
         tableView.estimatedRowHeight    = 100
         tableView.rowHeight             = UITableViewAutomaticDimension
-
-        searchTerm.delegate             = self
 
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         self.networkController = appDelegate.networkController

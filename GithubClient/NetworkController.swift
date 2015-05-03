@@ -39,6 +39,9 @@ class NetworkController {
 
     let imageQueue = NSOperationQueue()
 
+    // ----------------------------------------------------------------------------------------------
+    //  Function: init()
+    //
     init() {
         let ephemeralConfig = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         self.urlSession     = NSURLSession( configuration: ephemeralConfig )
@@ -49,6 +52,26 @@ class NetworkController {
         }
     }
 
+    // ----------------------------------------------------------------------------------------------
+    //  Function: getAccessToken()
+    //
+    func getAccessToken() -> NSString {
+        if self.accessToken != nil {
+            return self.accessToken!
+        } else {
+            if let accessToken = NSUserDefaults.standardUserDefaults().objectForKey(self.accessTokenUserDefaultsKey) as? String {
+                self.accessToken = accessToken
+                if DBUG { println( "accessToken[\(self.accessToken)]" ) }
+            } else {
+                self.accessToken = nil
+            }
+            return self.accessToken!
+        }
+    }
+
+    // ----------------------------------------------------------------------------------------------
+    //  Function: requestAccessToken()
+    //
     func requestAccessToken() {
         if DBUG { println( "NetworkController::requestAccessToken()" ) }
         //         https://github.com/login/oauth/authorize
@@ -89,18 +112,20 @@ class NetworkController {
                             for item in items {
                                 let repo = Repository( jsonRepository: item )
                                 repositories.append( repo )
-                                println( "\n item[\(n)] \(item)" )
+                                if self.DBUG { println( "\n item[\(n)] \(item)" ) }
                                 n++
                             }
                         }
 
                         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in callback( repositories, "" ) })
 
-                        println( "\n" )
-                        println( "Repositories --> \(repositories) " );
-                        println( "count --> \(repositories.count) " );
-                        if repositories.count > 0 {
-                            println( repositories[0].author )
+                        if self.DBUG {
+                            println( "\n" )
+                            println( "Repositories --> \(repositories) " );
+                            println( "count --> \(repositories.count) " );
+                            if repositories.count > 0 {
+                                println( repositories[0].author )
+                            }
                         }
 
                     default:
@@ -112,10 +137,15 @@ class NetworkController {
         dataTask.resume()
     }
 
-    func fetchUserBySearchTerm(searchTerm: String, callback: ([User]?, String?) -> ()) {
+    // ----------------------------------------------------------------------------------------------
+    //  Function: getUserBySearchTerm()       
+    //
+    func getUserBySearchTerm(searchTerm: String, callback: ([User]?, String?) -> ()) {
+
         //URL: with authorization
         let urlRequest = NSMutableURLRequest(URL: NSURL(string: "https://api.github.com/search/users?q=\(searchTerm)")!)
-        urlRequest.setValue("token \(accessToken!)", forHTTPHeaderField: "Authorization")
+//      urlRequest.setValue("token \(accessToken!)", forHTTPHeaderField: "Authorization")
+//      urlRequest.setValue("token \(getAccessToken())", forHTTPHeaderField: "Authorization")
 
         //Execute request.
         let dataTask = urlSession.dataTaskWithRequest(urlRequest, completionHandler: { (jsonData, urlResponse, error) -> Void in
@@ -130,58 +160,24 @@ class NetworkController {
                         var n = 0
                         if let items = jsonDictonary["items"] as? [[String : AnyObject]] {
                             for item in items {
-                                println( "[\(n)] item[\(item)]" )
+                                if self.DBUG { println( "[\(n)] item[\(item)]" ) }
                                 users.append(User(userJSONDictionary: item))
                                 n++
-                            } //end for
-                        } //end if
-                    } //end if
+                            }
+                        }
+                    }
 
-                    //Return to main queue.
+                    // Return to main queue.
                     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                         callback(users, nil)
-                    }) //end closure
+                    })
                 default:
                     callback(nil, "Error retrieving user by search term")
-                } //end switch
-            } //end if
-        }) //end closure
+                }
+            }
+        })
         dataTask.resume()
-    } //end func
-
-    
-//    func fetchUsersForSearch( search : String, completionHandler : ( [User]?, String? ) -> (Void)) {
-//
-//        let searchURL = "https://api.github.com/search/users?q="
-//        let url       = searchURL + search
-//
-//        let request   = NSMutableURLRequest( URL: NSURL( string: url )!)
-//
-//
-//        if  let token  = NSUserDefaults.standardUserDefaults().objectForKey("githubToken") as? String {
-//            request.setValue( "token \(token)", forHTTPHeaderField: "Authorization" )
-//        }
-//        println( "token[\(self.accessToken)]" )
-//
-//        let dataTask = NSURLSession.sharedSession().dataTaskWithRequest( request, completionHandler: {
-//            (data, response, error) -> Void in
-//
-//            if error == nil {
-//
-//                println( "data[\(data.length)]" )
-//                let users = UserJSONParser.usersFromJSONData(data)
-//                println( users )
-//
-//        //            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-//        //                println("Ping")
-//        //                completionHandler( users, nil )
-//        //                println( users )
-//        //
-//        //            })'
-//            }
-//        })
-//        dataTask.resume()
-//    }
+    }
 
     // ----------------------------------------------------------------------------------------------
     //  Function: getRepositoriesForGivenSearchTerm()        AKA. fetchRepositoriesForSearchTerm()
@@ -192,8 +188,8 @@ class NetworkController {
     //
     func getRepositoriesForGivenUser( searchTerm : String, callback : ( [Repository]?, String? ) -> (Void))  {
 
-        //    let url = NSURL( string: "http://127.0.0.1:3000" )                                          // Phase I
-        let url = NSURL( string: "https://api.github.com/search/repositories?q=user:\(searchTerm)" )      // Phase II
+        //    let url = NSURL( string: "http://127.0.0.1:3000" )                                      // Phase I
+        let url = NSURL( string: "https://api.github.com/search/repositories?q=user:\(searchTerm)" )  // Phase II
 
         let dataTask = self.urlSession.dataTaskWithURL( url!, completionHandler: { (data, urlResponse, error ) -> Void in
             if error == nil {
@@ -214,18 +210,20 @@ class NetworkController {
                             for item in items {
                                 let repo = Repository( jsonRepository: item )
                                 repositories.append( repo )
-                                println( "\n item[\(n)] \(item)" )
+                                if self.DBUG { println( "\n item[\(n)] \(item)" ) }
                                 n++
                             }
                         }
 
                         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in callback( repositories, "" ) })
 
-                        println( "\n" )
-                        println( "Repositories --> \(repositories) " );
-                        println( "count --> \(repositories.count) " );
-                        if repositories.count > 0 {
-                            println( repositories[0].author )
+                        if self.DBUG {
+                            println( "\n" )
+                            println( "Repositories --> \(repositories) " );
+                            println( "count --> \(repositories.count) " );
+                            if repositories.count > 0 {
+                                println( repositories[0].author )
+                            }
                         }
 
                     default:
@@ -246,8 +244,9 @@ class NetworkController {
     //
     func getRepositoriesForMe( callback : ( [Repository]?, String? ) -> (Void))  {
 
-        //    let url = NSURL( string: "http://127.0.0.1:3000" )                                          // Phase I
-        let url = NSURL( string: "https://api.github.com/search/repositories?q=user:dakoch" )      // Phase II
+        //  let url = NSURL( string: "http://127.0.0.1:3000" )                                     // Phase I
+        //  let url = NSURL( string: "https://api.github.com/search/repositories?q=user:dakoch" )  // Phase II
+        let url = NSURL( string: "https://api.github.com/search/repositories?q=user:dakoch" )      // Phase III
 
         let dataTask = self.urlSession.dataTaskWithURL( url!, completionHandler: { (data, urlResponse, error ) -> Void in
             if error == nil {
@@ -268,18 +267,20 @@ class NetworkController {
                             for item in items {
                                 let repo = Repository( jsonRepository: item )
                                 repositories.append( repo )
-                                println( "\n item[\(n)] \(item)" )
+                                if self.DBUG { println( "\n item[\(n)] \(item)" ) }
                                 n++
                             }
                         }
 
                         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in callback( repositories, "" ) })
 
-                        println( "\n" )
-                        println( "Repositories --> \(repositories) " );
-                        println( "count --> \(repositories.count) " );
-                        if repositories.count > 0 {
-                            println( repositories[0].author )
+                        if self.DBUG {
+                            println( "\n" )
+                            println( "Repositories --> \(repositories) " );
+                            println( "count --> \(repositories.count) " );
+                            if repositories.count > 0 {
+                                println( repositories[0].author )
+                            }
                         }
 
                     default:
@@ -291,6 +292,9 @@ class NetworkController {
         dataTask.resume()
     }
 
+    // ----------------------------------------------------------------------------------------------
+    //     Function: getAvatarImageForURL()
+    //
     func getAvatarImageForURL( url : String, completionHandler : (UIImage) -> (Void)) {
 
         let url = NSURL(string: url)
@@ -305,8 +309,8 @@ class NetworkController {
         }
     }
 
-
-    //
+    // ----------------------------------------------------------------------------------------------
+    //     Function: handleCallbackURL()
     //  Discription: Dealing w/ OAuth
     //
     func handleCallbackURL( url: NSURL ) {
@@ -316,7 +320,7 @@ class NetworkController {
         println( "code\(code)" )
 
         // This is an example of getting thru GITHUB's security.
-        // This is one way you can pass back info in a POST, via passing items as parameters in the URL!
+        // This is one way (EXAMPLE#1) you can pass back info in a POST, via passing items as parameters in the URL!
         if EXAMPLE1 {
 
             let oauthURL = "https://github.com/login/oauth/access_token?\(code!)" +
@@ -378,6 +382,75 @@ class NetworkController {
             dataTask.resume()
         }
     }
+
+
+//    items": [
+//    {
+//      "login": "brad",
+//      "id": 1614,
+//      "avatar_url": "https://avatars.githubusercontent.com/u/1614?v=3",
+//      "gravatar_id": "",
+//      "url": "https://api.github.com/users/brad",
+//      "html_url": "https://github.com/brad",
+//      "followers_url": "https://api.github.com/users/brad/followers",
+//      "following_url": "https://api.github.com/users/brad/following{/other_user}",
+//      "gists_url": "https://api.github.com/users/brad/gists{/gist_id}",
+//      "starred_url": "https://api.github.com/users/brad/starred{/owner}{/repo}",
+//      "subscriptions_url": "https://api.github.com/users/brad/subscriptions",
+//      "organizations_url": "https://api.github.com/users/brad/orgs",
+//      "repos_url": "https://api.github.com/users/brad/repos",
+//      "events_url": "https://api.github.com/users/brad/events{/privacy}",
+//      "received_events_url": "https://api.github.com/users/brad/received_events",
+//      "type": "User",
+//      "site_admin": false,
+//      "score": 94.950485
+//    },
+
+    func getUserDetailInformation( userName : String, callback : ([AnyObject]?, String) -> (Void)) {
+
+        let url = NSURL( string: "https://api.github.com/search/users?q=user:\(userName)" )
+
+//        let dataTask = self.urlSession.dataTaskWithURL( url!, completionHandler: { (data, urlResponse, error ) -> Void in
+//                println( "User Detail" )
+//        }
+//
+//        dataTask.resume()
+    }
+
+//    func fetchUserBySearchTerm(searchTerm: String, callback: ([User]?, String?) -> ()) {
+//        //URL: with authorization
+//        let urlRequest = NSMutableURLRequest(URL: NSURL(string: "https://api.github.com/search/users?q=\(searchTerm)")!)
+//        urlRequest.setValue("token \(accessToken!)", forHTTPHeaderField: "Authorization")
+//
+//        //Execute request.
+//        let dataTask = urlSession.dataTaskWithRequest(urlRequest, completionHandler: { (jsonData, urlResponse, error) -> Void in
+//            if error == nil {
+//                let response = urlResponse as NSHTTPURLResponse
+//                switch response.statusCode {
+//                case 200...299:
+//                    //Parse JSON response.
+//                    var users = [User]()
+//                    var errorPointer: NSError?
+//                    if let jsonDictonary = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &errorPointer) as? [String : AnyObject] {
+//                        if let items = jsonDictonary["items"] as? [[String : AnyObject]] {
+//                            for item in items {
+//                                users.append(User(jsonUser: item))
+//                            } //end for
+//                        } //end if
+//                    } //end if
+//
+//                    //Return to main queue.
+//                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+//                        callback(users, nil)
+//                    }) //end closure
+//                default:
+//                    callback(nil, "Error retrieving user by search term")
+//                } //end switch
+//            } //end if
+//        }) //end closure
+//        dataTask.resume()
+//    } //end func
+
 
     // ----------------------------------------------------------------------------------------------
     //  Function: fetchRepositoriesForSearchTerm() - ) obsolete !

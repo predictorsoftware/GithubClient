@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		74108F281AE8693300F9297E /* UserJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74108F271AE8693300F9297E /* UserJSONParser.swift */; };
 		74108F2A1AE8A0DD00F9297E /* ImageFetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74108F291AE8A0DD00F9297E /* ImageFetchService.swift */; };
 		74108F2C1AE8A13100F9297E /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74108F2B1AE8A13100F9297E /* ImageResizer.swift */; };
 		74108F2E1AE8AEB900F9297E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74108F2D1AE8AEB900F9297E /* StringExtension.swift */; };
@@ -54,7 +53,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		74108F271AE8693300F9297E /* UserJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserJSONParser.swift; sourceTree = "<group>"; };
 		74108F291AE8A0DD00F9297E /* ImageFetchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFetchService.swift; sourceTree = "<group>"; };
 		74108F2B1AE8A13100F9297E /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
 		74108F2D1AE8AEB900F9297E /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = GithubClient/StringExtension.swift; sourceTree = "<group>"; };
@@ -197,16 +195,15 @@
 			isa = PBXGroup;
 			children = (
 				74C7DE321AD8A4870007FBAC /* NetworkController.swift */,
-				74108F271AE8693300F9297E /* UserJSONParser.swift */,
 				74DEF41D1AE0F89900CBE1F8 /* WebViewController.swift */,
 				7497AD761AD8781D001DDDDE /* MenuTableViewController.swift */,
 				7497AD511AD851E9001DDDDE /* ViewController.swift */,
-				74C7DE381ADB26820007FBAC /* SearchRepoViewController.swift */,
-				74EED0EC1AE6C41C0005FE94 /* SearchMyReposViewController.swift */,
+				74EED0EE1AE6F1680005FE94 /* SearchForUserReposViewController.swift */,
 				74DBE9471AE826BB002CC586 /* ToUserDetailAnimationController.swift */,
 				74DBE9491AE82705002CC586 /* FromUserDetailAnimationController.swift */,
-				74EED0EE1AE6F1680005FE94 /* SearchForUserReposViewController.swift */,
 				74DBE93D1AE80ABC002CC586 /* SearchUsersViewController.swift */,
+				74C7DE381ADB26820007FBAC /* SearchRepoViewController.swift */,
+				74EED0EC1AE6C41C0005FE94 /* SearchMyReposViewController.swift */,
 				74108F291AE8A0DD00F9297E /* ImageFetchService.swift */,
 				74DBE93F1AE80E6F002CC586 /* UserAnimationController.swift */,
 				74DBE9451AE8240E002CC586 /* UserDetailViewController.swift */,
@@ -345,7 +342,6 @@
 				74D075481ADB413C00BD3A3C /* SearchRepoViewCell.swift in Sources */,
 				7497AD501AD851E9001DDDDE /* AppDelegate.swift in Sources */,
 				74DBE9441AE813EB002CC586 /* UserCell.swift in Sources */,
-				74108F281AE8693300F9297E /* UserJSONParser.swift in Sources */,
 				74108F2E1AE8AEB900F9297E /* StringExtension.swift in Sources */,
 				7497AD771AD8781D001DDDDE /* MenuTableViewController.swift in Sources */,
 				74DBE93E1AE80ABC002CC586 /* SearchUsersViewController.swift in Sources */,

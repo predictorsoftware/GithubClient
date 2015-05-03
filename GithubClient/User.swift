@@ -21,18 +21,3 @@ struct User {
         self.avatarImage = userJSONDictionary["avatar_image"] as UIImage?
     }
 }
-
-
-//import UIKit
-//
-//struct User {
-//    let name: String
-//    let avatarURL: String
-//    var avatarImage: UIImage?
-//
-//    //Initialize: Parse JSON data.
-//    init(jsonUser: [String : AnyObject]) {
-//        self.name = jsonUser["login"] as String
-//        self.avatarURL = jsonUser["avatar_url"] as String
-//    } //end init
-//}
