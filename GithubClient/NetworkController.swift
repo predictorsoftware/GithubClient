@@ -406,6 +406,8 @@ class NetworkController {
 //      "score": 94.950485
 //    },
 
+    // ----------------------------------------------------------------------------------------------
+    //  Function: getUserDetailInformation() 
     func getUserDetailInformation( userName : String, callback : ([AnyObject]?, String) -> (Void)) {
 
         let url = NSURL( string: "https://api.github.com/search/users?q=user:\(userName)" )
@@ -416,41 +418,6 @@ class NetworkController {
 //
 //        dataTask.resume()
     }
-
-//    func fetchUserBySearchTerm(searchTerm: String, callback: ([User]?, String?) -> ()) {
-//        //URL: with authorization
-//        let urlRequest = NSMutableURLRequest(URL: NSURL(string: "https://api.github.com/search/users?q=\(searchTerm)")!)
-//        urlRequest.setValue("token \(accessToken!)", forHTTPHeaderField: "Authorization")
-//
-//        //Execute request.
-//        let dataTask = urlSession.dataTaskWithRequest(urlRequest, completionHandler: { (jsonData, urlResponse, error) -> Void in
-//            if error == nil {
-//                let response = urlResponse as NSHTTPURLResponse
-//                switch response.statusCode {
-//                case 200...299:
-//                    //Parse JSON response.
-//                    var users = [User]()
-//                    var errorPointer: NSError?
-//                    if let jsonDictonary = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &errorPointer) as? [String : AnyObject] {
-//                        if let items = jsonDictonary["items"] as? [[String : AnyObject]] {
-//                            for item in items {
-//                                users.append(User(jsonUser: item))
-//                            } //end for
-//                        } //end if
-//                    } //end if
-//
-//                    //Return to main queue.
-//                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-//                        callback(users, nil)
-//                    }) //end closure
-//                default:
-//                    callback(nil, "Error retrieving user by search term")
-//                } //end switch
-//            } //end if
-//        }) //end closure
-//        dataTask.resume()
-//    } //end func
-
 
     // ----------------------------------------------------------------------------------------------
     //  Function: fetchRepositoriesForSearchTerm() - ) obsolete !

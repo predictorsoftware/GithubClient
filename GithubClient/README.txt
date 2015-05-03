@@ -37,7 +37,8 @@ TODO :
 //  Wednesday
 //
 // [X]  Create a UserSearchViewController that searches for users, similar to how we are already searching for repositories. Instead of a table view, use a collection view to display the users avatar image
-// [ ]  Upon clicking on a cell, implement a custom transition, and transition the image clicked on to a UserDetailViewController page that has their picture, name, and whatever other info you want pulled from their API.
+// [x]  Upon clicking on a cell, , and transition the image clicked on to a UserDetailViewController page that has their picture, name, and whatever other info you want pulled from their API.
+// [ ]  Implement a custom transition to UserDetailViewController
 
 //  ---------------------------------------------------------------------------------------------------------
 //  Thursday
@@ -48,14 +49,14 @@ TODO :
 //  ---------------------------------------------------------------------------------------------------------
 //  Friendship Friday
 
-// [ ]  Pair programming rules:
+// [o]  Pair programming rules:
 
-// [ ]  You must be working in a pair of 2 at all times. The best pairs have similar experience levels. Choose a new partner each week!
-// [ ]  One person will be typing (driving), but the other person needs to actively contribute. Each line of code you guys write should be discussed and decided upon. Keep an open mind, and if you guys disagree on something, try one way first and see if it works, if it doesn't try the other way.
-// [ ]  Don't physically harm your partner.
-// [ ]  Switch roles every half hour.
-// [ ]  Remember to high-five when you guys do something awesome. See http://en.wikipedia.org/wiki/High_five (Links to an external site.) for more info on this social ritual.
-// [ ]  The friendship friday challenges can be submitted jointly, if the work you did is on a different person's project, please note that in your homework submission. If the feature(s) you guys built is so awesome you just have to have it in your own project, copy it over.
+// [o]  You must be working in a pair of 2 at all times. The best pairs have similar experience levels. Choose a new partner each week!
+// [o]  One person will be typing (driving), but the other person needs to actively contribute. Each line of code you guys write should be discussed and decided upon. Keep an open mind, and if you guys disagree on something, try one way first and see if it works, if it doesn't try the other way.
+// [o]  Don't physically harm your partner.
+// [o]  Switch roles every half hour.
+// [x]  Remember to high-five when you guys do something awesome. See http://en.wikipedia.org/wiki/High_five (Links to an external site.) for more info on this social ritual.
+// [o]  The friendship friday challenges can be submitted jointly, if the work you did is on a different person's project, please note that in your homework submission. If the feature(s) you guys built is so awesome you just have to have it in your own project, copy it over.
 
 //  ---------------------------------------------------------------------------------------------------------
 //  Challenges:
@@ -63,7 +64,7 @@ TODO :
 // [ ]  Implement the 'My Profile' view controller in your app. This should display info about the currently logged in user (their bio, if they are hirable, their count of public and private repos, etc).
 // [ ]  Implement a way for the logged in user to create a repo from the app. Good luck and god bless.
 // [ ]  Implement a way for the user to update their bio.
-
+// [ ]  Implement a custom transition to UserDetailViewController
 
 
 

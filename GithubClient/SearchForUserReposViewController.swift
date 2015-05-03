@@ -81,16 +81,22 @@ class SearchForUserReposViewController : UIViewController, UITableViewDataSource
         println( "searchBar[\(searchBar.text)]" )
         println( "searchTerm[\(searchTerm.text)]" )
 
-        let repos   = [Repository]()
-        //Search repositories.
-        self.networkController.getRepositoriesForGivenUser( searchBar.text, callback: { ( repos, NilLiteralConvertible) -> () in
-            println( "repositories[\(repos)]" )
-            if repos != nil {
-                self.repositories = repos!
-            }
-            self.tableView.reloadData()
-        })
-        //Dismiss keyboard.
-        searchBar.resignFirstResponder()
+        var text    = searchBar.text
+        if text.validate() {
+
+            let repos   = [Repository]()
+            //Search repositories.
+            self.networkController.getRepositoriesForGivenUser( searchBar.text, callback: { ( repos, NilLiteralConvertible) -> () in
+                println( "repositories[\(repos)]" )
+                if repos != nil {
+                    self.repositories = repos!
+                }
+                self.tableView.reloadData()
+            })
+            //Dismiss keyboard.
+            searchBar.resignFirstResponder()
+        } else {
+            println( "Error: Bad Search term, Please try again!" )
+        }
     }
 }

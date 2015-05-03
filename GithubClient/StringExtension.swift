@@ -12,6 +12,7 @@ extension String {
 
     func validate() -> Bool {
 
+        println( "validate()" )
         let regex       = NSRegularExpression( pattern: "[^0-9a-zA-Z\n\\-]", options: nil, error: nil )
         let elements    = countElements( self )
         let range       = NSMakeRange( 0, elements )
@@ -27,6 +28,7 @@ extension String {
 
     func validForURL() -> Bool {
 
+        println( "validForURL()" )
         let elements    = countElements(self)
         let range       = NSMakeRange( 0, elements )
         let regex       = NSRegularExpression( pattern: "[^0-9a-zA-Z\n]", options: nil, error: nil)
