@@ -5,10 +5,6 @@
 //  Created by Gru on 04/22/15.
 //  Copyright (c) 2015 GruTech. All rights reserved.
 //
-//let name        : String
-//let avatarURL   : String
-//let htmlURL     : String
-//var avatarImage : UIImage?
 
 import UIKit
 
@@ -29,15 +25,11 @@ class UserDetailViewController: UIViewController {
     var userId                  = ""
 
     var selectedUser : User!
-//    var userName : UILabel!
-//    var userURL : UILabel!
-//    var userAvatarURL : UILabel!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        self.imageView.image    = selectedUser.avatarImage
+//      self.imageView.image    = selectedUser.avatarImage
         self.userName.text           = selectedUser.name
         self.userURL.text            = selectedUser.htmlURL
         self.userAvatarURL.text      = selectedUser.avatarURL

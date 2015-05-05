@@ -40,6 +40,7 @@
 		74DEF41E1AE0F89900CBE1F8 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DEF41D1AE0F89900CBE1F8 /* WebViewController.swift */; };
 		74EED0ED1AE6C41C0005FE94 /* SearchMyReposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EED0EC1AE6C41C0005FE94 /* SearchMyReposViewController.swift */; };
 		74EED0EF1AE6F1680005FE94 /* SearchForUserReposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EED0EE1AE6F1680005FE94 /* SearchForUserReposViewController.swift */; };
+		74F64D4D1AF97A5000864ADE /* MyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F64D4C1AF97A5000864ADE /* MyDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		74DEF41D1AE0F89900CBE1F8 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		74EED0EC1AE6C41C0005FE94 /* SearchMyReposViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMyReposViewController.swift; sourceTree = "<group>"; };
 		74EED0EE1AE6F1680005FE94 /* SearchForUserReposViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchForUserReposViewController.swift; sourceTree = "<group>"; };
+		74F64D4C1AF97A5000864ADE /* MyDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,8 +208,9 @@
 				74EED0EC1AE6C41C0005FE94 /* SearchMyReposViewController.swift */,
 				74108F291AE8A0DD00F9297E /* ImageFetchService.swift */,
 				74DBE93F1AE80E6F002CC586 /* UserAnimationController.swift */,
-				74DBE9451AE8240E002CC586 /* UserDetailViewController.swift */,
 				74108F2B1AE8A13100F9297E /* ImageResizer.swift */,
+				74DBE9451AE8240E002CC586 /* UserDetailViewController.swift */,
+				74F64D4C1AF97A5000864ADE /* MyDetailViewController.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				7497AD771AD8781D001DDDDE /* MenuTableViewController.swift in Sources */,
 				74DBE93E1AE80ABC002CC586 /* SearchUsersViewController.swift in Sources */,
 				74DBE9481AE826BB002CC586 /* ToUserDetailAnimationController.swift in Sources */,
+				74F64D4D1AF97A5000864ADE /* MyDetailViewController.swift in Sources */,
 				74DBE9401AE80E6F002CC586 /* UserAnimationController.swift in Sources */,
 				74108F2C1AE8A13100F9297E /* ImageResizer.swift in Sources */,
 				74C7DE391ADB26820007FBAC /* SearchRepoViewController.swift in Sources */,
