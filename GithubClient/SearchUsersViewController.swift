@@ -40,7 +40,7 @@ class SearchUsersViewController: UIViewController, UICollectionViewDataSource, U
     func searchBarSearchButtonClicked( searchBar: UISearchBar ) {
         if DBUG { println( "searchBarSearchButtonClicked[\(searchBar.text)]" ) }
         searchBar.resignFirstResponder()
-        NetworkController.sharedNetworkController.getUserBySearchTerm( searchBar.text,
+        NetworkController.sharedNetworkController.getUsersBySearchTerm( searchBar.text,
             callback:  { (users, error) -> (Void) in
                 self.users = users!
                 self.collectionView.reloadData()

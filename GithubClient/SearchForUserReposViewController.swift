@@ -61,9 +61,9 @@ class SearchForUserReposViewController : UIViewController, UITableViewDataSource
 
         let repoCell  = tableView.dequeueReusableCellWithIdentifier( "CELL_REPO", forIndexPath: indexPath ) as SearchRepoViewCell
         if (repoCell.repoName.text != nil)  {
-            println( "SearchMyReposViewController::tableView[\(repoCell.repoName.text)]" )
+            println( "SearchForUserReposViewController::tableView[\(repoCell.repoName.text)]" )
         } else {
-            println( "Trouble in SearchMyReposViewController::tableView" )
+            println( "Trouble in SearchForUserReposViewController::tableView" )
         }
 
         let repoEntry = repositories[indexPath.row]

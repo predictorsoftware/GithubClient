@@ -43,7 +43,7 @@ TODO :
 //  ---------------------------------------------------------------------------------------------------------
 //  Thursday
 
-// [ ]  Implement Regex in your app. Use it to validate the characters the user types into the search bar. Extend String with this functionality.
+// [x]  Implement Regex in your app. Use it to validate the characters the user types into the search bar. Extend String with this functionality.
 // [ ]  Implement WKWebView in your app. When a user clicks on a repo, show their repo's web page with WKWebView.
 
 //  ---------------------------------------------------------------------------------------------------------
