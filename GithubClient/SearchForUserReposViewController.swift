@@ -56,14 +56,15 @@ class SearchForUserReposViewController : UIViewController, UITableViewDataSource
     //
     func tableView( tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath ) -> UITableViewCell {
 
-        println( "indexPath[\(indexPath)]" )
-        println( "indexPathIndex[\(indexPath.row)]" )
+        if self.DBUG { println( "indexPath[\(indexPath)]" )
+                        println( "indexPathIndex[\(indexPath.row)]" )
+        }
 
         let repoCell  = tableView.dequeueReusableCellWithIdentifier( "CELL_REPO", forIndexPath: indexPath ) as SearchRepoViewCell
         if (repoCell.repoName.text != nil)  {
-            println( "SearchForUserReposViewController::tableView[\(repoCell.repoName.text)]" )
+            if self.DBUG { println( "SearchForUserReposViewController::tableView[\(repoCell.repoName.text)]" ) }
         } else {
-            println( "Trouble in SearchForUserReposViewController::tableView" )
+            if self.DBUG { println( "Trouble in SearchForUserReposViewController::tableView" ) }
         }
 
         let repoEntry = repositories[indexPath.row]
@@ -78,8 +79,10 @@ class SearchForUserReposViewController : UIViewController, UITableViewDataSource
 
     func searchBarSearchButtonClicked( searchBar: UISearchBar) {
 
-        println( "searchBar[\(searchBar.text)]" )
-        println( "searchTerm[\(searchTerm.text)]" )
+        if self.DBUG {
+            println( "searchBar[\(searchBar.text)]" )
+            println( "searchTerm[\(searchTerm.text)]" )
+        }
 
         var text    = searchBar.text
         if text.validate() {
@@ -87,7 +90,7 @@ class SearchForUserReposViewController : UIViewController, UITableViewDataSource
             let repos   = [Repository]()
             //Search repositories.
             self.networkController.getRepositoriesForGivenUser( searchBar.text, callback: { ( repos, NilLiteralConvertible) -> () in
-                println( "repositories[\(repos)]" )
+                if self.DBUG { println( "repositories[\(repos)]" ) }
                 if repos != nil {
                     self.repositories = repos!
                 }

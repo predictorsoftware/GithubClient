@@ -54,12 +54,14 @@ class SearchMyReposViewController : UIViewController, UITableViewDataSource, UIT
     //
     func tableView( tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath ) -> UITableViewCell {
 
-        println( "indexPath[\(indexPath)]" )
-        println( "indexPathIndex[\(indexPath.row)]" )
+        if self.DBUG {
+            println( "indexPath[\(indexPath)]" )
+            println( "indexPathIndex[\(indexPath.row)]" )
+        }
 
         let repoCell  = tableView.dequeueReusableCellWithIdentifier( "CELL_REPO", forIndexPath: indexPath ) as SearchRepoViewCell
         if (repoCell.repoName.text != nil)  {
-            println( "SearchMyReposViewController::tableView[\(repoCell.repoName.text)]" )
+            if self.DBUG { println( "SearchMyReposViewController::tableView[\(repoCell.repoName.text)]" ) }
         } else {
             println( "Trouble in SearchMyReposViewController::tableView" )
         }
@@ -79,7 +81,7 @@ class SearchMyReposViewController : UIViewController, UITableViewDataSource, UIT
         let repos   = [Repository]()
         //Search repositories.
         self.networkController.getRepositoriesForMe( { ( repos, NilLiteralConvertible) -> () in
-            println( "repositories[\(repos)]" )
+            if self.DBUG { println( "repositories[\(repos)]" ) }
             if repos != nil {
                 self.repositories = repos!
             }

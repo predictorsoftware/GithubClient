@@ -56,12 +56,14 @@ class SearchRepoViewController : UIViewController, UITableViewDataSource, UITabl
     //
     func tableView( tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath ) -> UITableViewCell {
 
-        println( "indexPath[\(indexPath)]" )
-        println( "indexPathIndex[\(indexPath.row)]" )
+        if self.DBUG {
+            println( "indexPath[\(indexPath)]" )
+            println( "indexPathIndex[\(indexPath.row)]" )
+        }
 
         let repoCell  = tableView.dequeueReusableCellWithIdentifier( "CELL_REPO", forIndexPath: indexPath ) as SearchRepoViewCell
         if (repoCell.repoName.text != nil)  {
-            println( "SearchRepoViewController::tableView[\(repoCell.repoName.text)]" )
+            if self.DBUG { println( "SearchRepoViewController::tableView[\(repoCell.repoName.text)]" ) }
         } else {
             println( "Trouble in SearchRepoViewController::tableView" )
         }
@@ -78,8 +80,10 @@ class SearchRepoViewController : UIViewController, UITableViewDataSource, UITabl
 
     func searchBarSearchButtonClicked( searchBar: UISearchBar) {
 
-        println( "searchBar[\(searchBar.text)]" )
-        println( "searchTerm[\(searchTerm.text)]" )
+        if self.DBUG {
+            println( "searchBar[\(searchBar.text)]" )
+            println( "searchTerm[\(searchTerm.text)]" )
+        }
 
         let repos   = [Repository]()
         //Search repositories.

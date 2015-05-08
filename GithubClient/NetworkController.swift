@@ -106,9 +106,10 @@ class NetworkController {
 
         let dataTask = self.urlSession.dataTaskWithURL( url!, completionHandler: { (data, urlResponse, error ) -> Void in
             if error == nil {
-                if self.DBUG { println( "       data[\(data)]" ) }
-                println( "urlResponse[\(urlResponse)]" )
-                println( "      error[\(error)]" )
+                if self.DBUG {  println( "       data[\(data)]" )
+                                println( "urlResponse[\(urlResponse)]" )
+                                println( "      error[\(error)]" )
+                }
 
                 if let response = urlResponse as? NSHTTPURLResponse {
 
@@ -255,9 +256,10 @@ class NetworkController {
 
         let dataTask = self.urlSession.dataTaskWithURL( url!, completionHandler: { (data, urlResponse, error ) -> Void in
             if error == nil {
-                if self.DBUG { println( "       data[\(data)]" ) }
-                println( "urlResponse[\(urlResponse)]" )
-                println( "      error[\(error)]" )
+                if self.DBUG { println( "       data[\(data)]" )
+                               println( "urlResponse[\(urlResponse)]" )
+                               println( "      error[\(error)]" )
+                }
 
                 if let response = urlResponse as? NSHTTPURLResponse {
 
@@ -312,9 +314,10 @@ class NetworkController {
 
         let dataTask = self.urlSession.dataTaskWithURL( url!, completionHandler: { (data, urlResponse, error ) -> Void in
             if error == nil {
-                if self.DBUG { println( "       data[\(data)]" ) }
-                println( "urlResponse[\(urlResponse)]" )
-                println( "      error[\(error)]" )
+                if self.DBUG { println( "       data[\(data)]" )
+                               println( "urlResponse[\(urlResponse)]" )
+                               println( "      error[\(error)]" )
+                }
 
                 if let response = urlResponse as? NSHTTPURLResponse {
 
@@ -377,9 +380,9 @@ class NetworkController {
     //
     func handleCallbackURL( url: NSURL ) {
 
-        println( "NetworkController::handleCallbackURL[\(url)]" )
+        if DBUG { println( "NetworkController::handleCallbackURL[\(url)]" ) }
         let code = url.query
-        println( "code\(code)" )
+        if DBUG { println( "code\(code)" ) }
 
         // This is an example of getting thru GITHUB's security.
         // This is one way (EXAMPLE#1) you can pass back info in a POST, via passing items as parameters in the URL!
@@ -420,11 +423,11 @@ class NetworkController {
                         switch httpResponse.statusCode {
                         case 200...299:
                             let tokenResponse = NSString( data: data, encoding: NSASCIIStringEncoding)
-                            println(tokenResponse)
+                            if self.DBUG { println(tokenResponse) }
 
                             let accessTokenKey           = tokenResponse?.componentsSeparatedByString("&").first as String
                             let accessTokenValue         = accessTokenKey.componentsSeparatedByString("=").last
-                            println(accessTokenValue!)
+                            if self.DBUG { println(accessTokenValue!) }
 
                             self.accessToken             = accessTokenValue
                             self.accessTokenKeyComponent = accessTokenKey
@@ -439,39 +442,14 @@ class NetworkController {
                     }
                 }
 
-                println(response)
+                if self.DBUG { println(response) }
             })
             dataTask.resume()
         }
     }
 
-
-//    items": [
-//    {
-//      "login": "brad",
-//      "id": 1614,
-//      "avatar_url": "https://avatars.githubusercontent.com/u/1614?v=3",
-//      "gravatar_id": "",
-//      "url": "https://api.github.com/users/brad",
-//      "html_url": "https://github.com/brad",
-//      "followers_url": "https://api.github.com/users/brad/followers",
-//      "following_url": "https://api.github.com/users/brad/following{/other_user}",
-//      "gists_url": "https://api.github.com/users/brad/gists{/gist_id}",
-//      "starred_url": "https://api.github.com/users/brad/starred{/owner}{/repo}",
-//      "subscriptions_url": "https://api.github.com/users/brad/subscriptions",
-//      "organizations_url": "https://api.github.com/users/brad/orgs",
-//      "repos_url": "https://api.github.com/users/brad/repos",
-//      "events_url": "https://api.github.com/users/brad/events{/privacy}",
-//      "received_events_url": "https://api.github.com/users/brad/received_events",
-//      "type": "User",
-//      "site_admin": false,
-//      "score": 94.950485
-//    },
-//
-//    let urlRequest = NSMutableURLRequest(URL: NSURL(string: "https://api.github.com/search/users?q=\(searchTerm)")!)
-//    urlRequest.setValue("token \(accessToken!)", forHTTPHeaderField: "Authorization")
-    //Function: Fetch user information from GitHub.
-
+    // ----------------------------------------------------------------------------------------------
+    // Function: Fetch user information from GitHub.
     func fetchUserBySearchTerm(searchTerm: String, callback: ([User]?, String?) -> ()) {
         //URL: with authorization
         //let urlRequest = NSMutableURLRequest(URL: NSURL(string: "https://api.github.com/search/users?q=\(searchTerm)")!)
@@ -530,7 +508,7 @@ class NetworkController {
         let url = NSURL( string: "http://127.0.0.1:3000" )
         let dataTask = self.urlSession.dataTaskWithURL( url!, completionHandler: { (datat, urlResponse, error) -> Void in
             if error == nil {
-                println( urlResponse )
+                if self.DBUG { println( urlResponse ) }
             }
         })
         dataTask.resume()
